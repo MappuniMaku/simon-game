@@ -16,14 +16,22 @@ let vm = new Vue({
         },
         clickHandler: function (e) {
             let buttonElement = e.target;
+
             if (!buttonElement.classList.contains('disabled')) {
                 let buttonNumber = buttonElement.dataset.buttonNumber;
+
+                this.highlightButton(buttonNumber);
                 this.playSound(buttonNumber);
             };
         },
         showSequence: function () {
             let i = 0;
             let delay = this.setDelay;
+            let buttonElementsArray = document.querySelectorAll(".game__button");
+
+            buttonElementsArray.forEach(elem => {
+                elem.classList.add("disabled");
+            });
 
             setTimeout(function handleButton () {
                 let currentButtonNumber = vm.sequenceArray[i];
@@ -38,6 +46,12 @@ let vm = new Vue({
                 i++;
 
             }, delay);
+            
+            setTimeout(function () {
+                buttonElementsArray.forEach(elem => {
+                    elem.classList.remove("disabled");
+                });
+            }, delay * vm.sequenceArray.length);
         },
         highlightButton: function (buttonNumber) {
             let buttonElement = document.querySelector(`.game__button[data-button-number="${buttonNumber}"]`);

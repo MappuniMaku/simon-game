@@ -54,7 +54,7 @@ html {
     background-color: #A9DFBF;
 }
 
-.game__button_green:active,
+/* .game__button_green:active, */
 .game__button_green.game__button_highlighted {
     background-color: #27AE60;
 }
@@ -64,7 +64,7 @@ html {
     right: 200px;
 }
 
-.game__button_yellow:active,
+/* .game__button_yellow:active, */
 .game__button_yellow.game__button_highlighted {
     background-color: #F1C40F;
 }
@@ -75,7 +75,7 @@ html {
     right: 200px;
 }
 
-.game__button_red:active,
+/* .game__button_red:active, */
 .game__button_red.game__button_highlighted {
     background-color: #E74C3C;
 }
@@ -85,7 +85,7 @@ html {
     bottom: 200px;
 }
 
-.game__button_blue:active,
+/* .game__button_blue:active, */
 .game__button_blue.game__button_highlighted {
     background-color: #3498DB;
 }
