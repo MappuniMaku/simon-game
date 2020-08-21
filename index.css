@@ -3,6 +3,10 @@ html {
     font-size: 20px;
 }
 
+p {
+    margin: 10px 0;
+}
+
 .content-wrapper {
     display: flex;
     flex-direction: column;
@@ -25,7 +29,7 @@ html {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 0 30px 0 0;
+    margin: 0 50px 0 0;
 }
 
 .game__button-container {
@@ -33,6 +37,12 @@ html {
     height: 200px;
     position: relative;
     overflow: hidden;
+}
+
+.game__controls-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .game__button {
@@ -110,4 +120,57 @@ html {
     left: 0;
     top: 1px;
     cursor: pointer;
+}
+
+@media (max-width: 850px) {
+    .game {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .game__buttons-field {
+        margin: 0 0 20px 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .game {
+        padding: 20px;
+    }
+
+    .game__title {
+        font-size: 30px;
+    }
+    
+    .game__buttons-field {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .game__button-container {
+        width: 125px;
+        height: 125px;
+    }
+    
+    .game__button {
+        width: 250px;
+        height: 250px;
+    }
+
+    .game__button:hover {
+        border: 3px solid black;
+    }
+
+    .game__button_yellow {
+        right: 125px;
+    }
+
+    .game__button_red {
+        bottom: 125px;
+        right: 125px;
+    }
+ 
+    .game__button_blue {
+        bottom: 125px;
+    }
 }
