@@ -6,10 +6,13 @@ let vm = new Vue({
         round: 0,
         gameInProgress: false,
         difficultyLevel: 'easy',
-        sequenceArray: [3, 2, 4, 1],
+        sequenceArray: [],
+        clicksNumber: 0,
+        defeatRound: 0
     },
     methods: {
         startGame: function () {
+            this.round++;
             this.gameInProgress = true;
             this.sequenceArray.push(this.getRandomInteger());
             this.showSequence();
@@ -22,6 +25,18 @@ let vm = new Vue({
 
                 this.highlightButton(buttonNumber);
                 this.playSound(buttonNumber);
+
+                if (this.gameInProgress) {
+                    if ( buttonNumber === this.sequenceArray[this.clicksNumber].toString() ) {
+                        this.clicksNumber++;
+
+                        if (this.clicksNumber === this.sequenceArray.length) {
+                            this.nextRound();
+                        };
+                    } else {
+                        this.declareDefeat();
+                    };
+                };
             };
         },
         showSequence: function () {
@@ -52,6 +67,12 @@ let vm = new Vue({
                     elem.classList.remove("disabled");
                 });
             }, delay * vm.sequenceArray.length);
+        },
+        nextRound: function () {
+            this.round++;
+            this.clicksNumber = 0;
+            this.sequenceArray.push(this.getRandomInteger());
+            this.showSequence();
         },
         highlightButton: function (buttonNumber) {
             let buttonElement = document.querySelector(`.game__button[data-button-number="${buttonNumber}"]`);
@@ -86,6 +107,13 @@ let vm = new Vue({
             let random = 1 + Math.random() * 4;
             return Math.floor(random);
         },
+        declareDefeat: function () {
+            this.defeatRound = this.round;
+            this.round = 0;
+            this.gameInProgress = false;
+            this.sequenceArray = [];
+            this.clicksNumber = 0;
+        }
     },
     computed: {
         setDelay: function () {

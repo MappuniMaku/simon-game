@@ -28,9 +28,9 @@
             </div>
 
             <div class="game__controls-container">
-                <p>Раунд: {{ round }}</p>
-
-                <button v-if="!gameInProgress" class="game__start-button" @click="startGame">Начать</button>
+                <p v-if="!gameInProgress && defeatRound > 0">К сожалению, вы проиграли.</p>
+                <p v-if="!gameInProgress && defeatRound > 0">Вы дошли до раунда: {{ defeatRound }}</p>
+                <p v-if="gameInProgress">Раунд: {{ round }}</p>
 
                 <div v-if="!gameInProgress" class="game__difficulty-select-container">
                     <p>Выберите уровень сложности:</p>
@@ -45,6 +45,8 @@
                         <input class="game__radio-input" type="radio" v-model="difficultyLevel" value="hard">
                     </label>
                 </div>
+
+                <button v-if="!gameInProgress" class="game__start-button" @click="startGame">Начать</button>
 
                 <p v-if="gameInProgress && (difficultyLevel === 'easy')">Уровень сложности: легкий</p>
                 <p v-if="gameInProgress && (difficultyLevel === 'medium')">Уровень сложности: средний</p>
