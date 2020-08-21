@@ -1,0 +1,66 @@
+.game__buttons-field {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.game__button-container {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game__button {
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+    border: 5px solid white;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 100%;
+    transition: 100ms ease;
+}
+
+.game__button:hover {
+    border: 5px solid black;
+}
+
+.game__button_green {
+    background-color: #A9DFBF;
+}
+
+.game__button_green:active {
+    background-color: #27AE60;
+}
+
+.game__button_yellow {
+    background-color: #F9E79F;
+    right: 200px;
+}
+
+.game__button_yellow:active {
+    background-color: #F1C40F;
+}
+
+.game__button_red {
+    background-color: #F5B7B1;
+    bottom: 200px;
+    right: 200px;
+}
+
+.game__button_red:active {
+    background-color: #E74C3C;
+}
+
+.game__button_blue {
+    background-color: #AED6F1;
+    bottom: 200px;
+}
+
+.game__button_blue:active {
+    background-color: #3498DB;
+}
+
