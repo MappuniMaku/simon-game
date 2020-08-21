@@ -6,7 +6,7 @@ let vm = new Vue({
         round: 0,
         gameInProgress: false,
         difficultyLevel: 'easy',
-        sequenceArray: [],
+        sequenceArray: [3, 2, 4, 1],
     },
     methods: {
         startGame: function () {
@@ -19,14 +19,25 @@ let vm = new Vue({
             if (!buttonElement.classList.contains('disabled')) {
                 let buttonNumber = buttonElement.dataset.buttonNumber;
                 this.playSound(buttonNumber);
-
-            }
+            };
         },
         showSequence: function () {
-            this.sequenceArray.forEach( (elem, index) => {
-                this.highlightButton(elem);
-                this.playSound(elem.toString());
-            });
+            let i = 0;
+            let delay = this.setDelay;
+
+            setTimeout(function handleButton () {
+                let currentButtonNumber = vm.sequenceArray[i];
+
+                vm.highlightButton(currentButtonNumber);
+                vm.playSound(currentButtonNumber.toString());
+
+                if (i < vm.sequenceArray.length - 1) {
+                    setTimeout(handleButton, delay)
+                };
+
+                i++;
+
+            }, delay);
         },
         highlightButton: function (buttonNumber) {
             let buttonElement = document.querySelector(`.game__button[data-button-number="${buttonNumber}"]`);
@@ -63,6 +74,15 @@ let vm = new Vue({
         },
     },
     computed: {
-        
+        setDelay: function () {
+            switch (this.difficultyLevel) {
+                case 'easy':
+                    return 1500;
+                case 'medium':
+                    return 1000;
+                case 'hard':
+                    return 400;
+            };
+        }
     }
 });
