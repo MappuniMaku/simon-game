@@ -9,40 +9,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="game" id="simon-game">
-        <div class="game__buttons-field">
-            <div class="game__button-container">
-                <div class="game__button game__button_green" data-button-number="1" v-on:click="playSound"></div>
+    <div class="content-wrapper">
+        <h1>Simon the Game</h1>
+        <div class="game" id="simon-game">
+            <div class="game__buttons-field">
+                <div class="game__button-container">
+                    <div class="game__button game__button_green" data-button-number="1" @click="clickHandler"></div>
+                </div>
+                <div class="game__button-container">
+                    <div class="game__button game__button_yellow" data-button-number="2" @click="clickHandler"></div>
+                </div>
+                <div class="game__button-container">
+                    <div class="game__button game__button_blue" data-button-number="4" @click="clickHandler"></div>
+                </div>
+                <div class="game__button-container">
+                    <div class="game__button game__button_red" data-button-number="3" @click="clickHandler"></div>
+                </div>
             </div>
-            <div class="game__button-container">
-                <div class="game__button game__button_yellow" data-button-number="2" v-on:click="playSound"></div>
-            </div>
-            <div class="game__button-container">
-                <div class="game__button game__button_blue" data-button-number="4" v-on:click="playSound"></div>
-            </div>
-            <div class="game__button-container">
-                <div class="game__button game__button_red" data-button-number="3" v-on:click="playSound"></div>
+
+            <div class="game__controls-container">
+                <p>Раунд: {{ round }}</p>
+
+                <button v-if="!gameInProgress" class="game__start-button" @click="startGame">Начать</button>
+
+                <div v-if="!gameInProgress" class="game__difficulty-select-container">
+                    <p>Выберите уровень сложности:</p>
+
+                    <label class="game__radio-label">Легкий
+                        <input class="game__radio-input" type="radio" v-model="difficultyLevel" value="easy">
+                    </label>
+                    <label class="game__radio-label">Средний
+                        <input class="game__radio-input" type="radio" v-model="difficultyLevel" value="medium">
+                    </label>
+                    <label class="game__radio-label">Сложный
+                        <input class="game__radio-input" type="radio" v-model="difficultyLevel" value="hard">
+                    </label>
+                </div>
+
+                <p v-if="gameInProgress && (difficultyLevel === 'easy')">Уровень сложности: легкий</p>
+                <p v-if="gameInProgress && (difficultyLevel === 'medium')">Уровень сложности: средний</p>
+                <p v-if="gameInProgress && (difficultyLevel === 'hard')">Уровень сложности: сложный</p>
             </div>
 
 
         </div>
 
-        <audio id="sound1" preload="auto">
-            <source src="sounds/1.mp3" type="audio/mpeg">
-            <source src="sounds/1.ogg" type="audio/ogg">
-        </audio>
-        <audio>
-            <source src="sounds/2.mp3" type="audio/mpeg">
-            <source src="sounds/2.ogg" type="audio/ogg">
-        </audio>
-        <audio>
-            <source src="sounds/3.mp3" type="audio/mpeg">
-            <source src="sounds/3.ogg" type="audio/ogg">
-        </audio>
-        <audio>
-            <source src="sounds/4.mp3" type="audio/mpeg">
-            <source src="sounds/4.ogg" type="audio/ogg">
-        </audio>
     </div>
     
     <script src="index.js" type="application/javascript"></script>
